@@ -1,21 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("Screens")]
     [SerializeField] private MainScreen mainScreen;
     [SerializeField] private CreationScreen creationScreen;
-    // Start is called before the first frame update
-    void Start()
+    [Header("Main Screen Elements")]
+    [SerializeField] private GameObject letsGetStarted;
+    [SerializeField] private ScrollRect sourcesScrollRect;
+    public void OpenCreationScreen()
     {
-        
+        mainScreen.gameObject.SetActive(false);
+        creationScreen.gameObject.SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void OpenMainScreenAfterImport()
     {
-        
+        creationScreen.gameObject.SetActive(false);
+        mainScreen.gameObject.SetActive(true);
+        if (letsGetStarted != null)
+            letsGetStarted.SetActive(false);
+        if (sourcesScrollRect != null)
+            sourcesScrollRect.gameObject.SetActive(true);
     }
 }
